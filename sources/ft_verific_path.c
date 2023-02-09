@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_verific_path.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/08 10:40:36 by asousa-n          #+#    #+#             */
+/*   Updated: 2023/02/08 11:22:13 by asousa-n         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 # include <stdbool.h>
 
@@ -29,20 +41,20 @@ static char	**copy_map(t_game *game)
 static bool	flood_fill(t_map *map, t_position cur, char **map_c)
 {
 	static int		collectibles = 0;
-	static bool		exit = false;
+	static int		exit = 0;
 
 	if (map_c[cur.y][cur.x] == WALL)
 		return (false);
 	else if (map_c[cur.y][cur.x] == COLLECTIBLE)
 		collectibles += 1;
 	else if (map_c[cur.y][cur.x] == MAP_EXIT)
-		exit = true;
+		exit += 1;
 	map_c[cur.y][cur.x] = WALL;
 	flood_fill(map, (t_position){cur.x + 1, cur.y}, map_c);
 	flood_fill(map, (t_position){cur.x - 1, cur.y}, map_c);
 	flood_fill(map, (t_position){cur.x, cur.y + 1}, map_c);
 	flood_fill(map, (t_position){cur.x, cur.y - 1}, map_c);
-	return (collectibles == map->collectible && exit);
+	return ((collectibles == map->collectible) && (exit == 1));
 }
 
 void	ft_verific_path(t_game *game)
