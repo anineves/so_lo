@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_init_mlx.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/08 10:40:02 by asousa-n          #+#    #+#             */
+/*   Updated: 2023/02/08 10:40:51 by asousa-n         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	ft_init_mlx(t_game *game)
@@ -39,4 +51,3 @@ void	ft_init_sprites(t_game *game)
 	game->exit_open = ft_new_sprite(mlx, EXIT_OPEN_XPM, game);
 	game->exit_closed = ft_new_sprite(mlx, EXIT_CLOSED_XPM, game);
 }
-
