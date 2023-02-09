@@ -28,7 +28,7 @@ char	*ft_strjoin_free(char *s1, char *s2)
 
 int	ft_handler_error(char *msg, t_game *game)
 {
-	if (game->map_alloc == true)
+	if (game->map.full)
 		ft_free_map(game->map.full);
 	free(game);
 	ft_printf("Error\n %s", msg);
