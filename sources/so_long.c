@@ -33,7 +33,7 @@ int main(int argc, char **argv)
 	ft_init_sprites(game);
 	ft_get_map(game);
 	mlx_hook(game->win_ptr, 02, (1L<<0), ft_play, game);
-	mlx_hook(game->win_ptr, 17, (1L<<2), ft_close_game, game);
+	mlx_hook(game->win_ptr, 17, (1L<<2), ft_close, game);
 	mlx_hook(game->win_ptr, 12, (1L<<15), ft_get_map, game);
 	mlx_loop(game->mlx_ptr);
 	ft_free_all_allocated_memory(game);
