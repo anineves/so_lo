@@ -9,8 +9,7 @@ SRCS_DIR		= ./sources/
 
 SRCS 			= $(addprefix $(SRCS_DIR),\
 			so_long.c		\
-			ft_close_game.c		\
-			ft_free_memory.c		\
+			ft_free_memory.c	\
 			ft_get_map.c		\
 			ft_init_game.c		\
 			ft_init_mlx.c		\
