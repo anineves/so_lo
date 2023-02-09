@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_init_game.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/08 10:39:54 by asousa-n          #+#    #+#             */
+/*   Updated: 2023/02/08 13:24:24 by asousa-n         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	ft_read_map(t_game *game, char *map_file)
@@ -22,7 +34,6 @@ void	ft_read_map(t_game *game, char *map_file)
 	}
 	close(read);
 	game->map.full = ft_split(map_t, '\n');
-	game->map_alloc = true;
 	free(map_t);
 }
 
@@ -35,4 +46,3 @@ void	ft_init_var(t_game *game)
 	game->player_sprite = P_FRONT;
 	game->map.columns = ft_strlen(game->map.full[0]);
 }
-
