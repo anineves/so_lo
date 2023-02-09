@@ -1,5 +1,16 @@
-#include "so_long.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_get_map.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/08 10:39:37 by asousa-n          #+#    #+#             */
+/*   Updated: 2023/02/08 13:27:12 by asousa-n         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "so_long.h"
 
 void	ft_string_put(t_game *game)
 {
@@ -13,14 +24,8 @@ void	ft_string_put(t_game *game)
 	free(str);
 }
 
-void	ft_get_sprite(t_game *game, t_image sprite, int row, int col)
-{
-	mlx_put_image_to_window (game->mlx_ptr, game->win_ptr, \
-	sprite.xpm_ptr, col * sprite.x, row * sprite.y);
-}
-
 void	ft_pos_player(t_game *game, int y, int x)
-{
+{	
 	if (game->player_sprite == P_FRONT)
 		ft_get_sprite (game, game->player_front, y, x);
 	if (game->player_sprite == P_LEFT)
@@ -31,25 +36,35 @@ void	ft_pos_player(t_game *game, int y, int x)
 		ft_get_sprite (game, game->player_back, y, x);
 }
 
+void	ft_get_sprite(t_game *game, t_image sprite, int row, int col)
+{
+	mlx_put_image_to_window (game->mlx_ptr, game->win_ptr, \
+	sprite.xpm_ptr, col * sprite.x, row * sprite.y);
+}
+
 void	ft_identify_sprite(t_game *game, int y, int x)
 {	
-	char	parameter;
+	char	sym;
 
-	parameter = game->map.full[y][x];
-	if (parameter == WALL)
+	sym = game->map.full[y][x];
+	if (sym == WALL)
 		ft_get_sprite (game, game->wall, y, x);
-	else if (parameter == FLOOR)
+	else if (sym == FLOOR)
 		ft_get_sprite (game, game->floor, y, x);
-	else if (parameter == COLLECTIBLE)
+	else if (sym == COLLECTIBLE)
 		ft_get_sprite (game, game->collectible, y, x);
-	else if (parameter == MAP_EXIT)
+	else if (sym == MAP_EXIT)
 	{
 		if (game->map.collectible > 0)
+		{
 			ft_get_sprite (game, game->exit_closed, y, x);
+			game->map.p_exit.y = y;
+			game->map.p_exit.x = x;
+		}
 		else
 			ft_get_sprite (game, game->exit_open, y, x);
 	}
-	else if (parameter == PLAYER)
+	else if (sym == PLAYER)
 		ft_pos_player (game, y, x);
 }
 
@@ -72,4 +87,3 @@ int	ft_get_map(t_game *game)
 	ft_string_put(game);
 	return (0);
 }
-
