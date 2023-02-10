@@ -43,15 +43,13 @@
 # define P_FRONT		1
 # define P_LEFT			2
 # define P_RIGHT		3
-# define P_BACK			4
 
 # define WALL_XPM				"sprites/wall.xpm"
-# define FLOOR_XPM				"sprites/floor.xpm"
+# define FLOOR_XPM			"sprites/floor.xpm"
 # define EXIT_CLOSED_XPM		"sprites/exit-closed.xpm"
-# define EXIT_OPEN_XPM			"sprites/exit-open.xpm"
+# define EXIT_OPEN_XPM		"sprites/exit-open.xpm"
 # define COLLECTIBLE_XPM		"sprites/collectible.xpm"
 # define PLAYER_FRONT_XPM		"sprites/player/front.xpm"
-# define PLAYER_BACK_XPM		"sprites/player/back.xpm"
 # define PLAYER_LEFT_XPM		"sprites/player/left.xpm"
 # define PLAYER_RIGHT_XPM		"sprites/player/right.xpm"
 
@@ -94,8 +92,8 @@ typedef struct s_game
 	t_image		exit_open;
 	t_image		exit_closed;
 	t_image		player_front;
+	t_image	player_right;
 	t_image		player_left;
-	t_image		player_right;
 	t_image		player_back;
 }	t_game;
 
@@ -126,6 +124,8 @@ void	ft_free_all_allocated_memory(t_game *game);
 void	ft_destroy_images(t_game *game);
 int		ft_handler_error(char *msg, t_game *game);
 void	ft_verific_path(t_game *game);
+int	ft_handler_error1(char *msg, t_game *game);
+void	ft_verific_line(char *map, t_game *game);
 
 
 #endif
