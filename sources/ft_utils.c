@@ -26,8 +26,15 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	return (newstr);
 }
 
+int	ft_handler_error1(char *msg, t_game *game)
+{	
+	free(game);
+	ft_printf("Error\n %s", msg);
+	exit (EXIT_FAILURE);
+}
+
 int	ft_handler_error(char *msg, t_game *game)
-{
+{	
 	if (game->map.full)
 		ft_free_map(game->map.full);
 	free(game);
