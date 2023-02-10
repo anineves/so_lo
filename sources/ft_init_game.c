@@ -12,6 +12,29 @@
 
 #include "so_long.h"
 
+void	ft_verific_line(char *map, t_game *game)
+{
+	int	i;
+
+	i = 0;
+	if ( map[0] == '\n')
+	{
+		free(map);
+		ft_handler_error1("Invalid map.\
+The map have an empty line", game);
+	}
+	while (map[i + 1])
+	{
+		if (map[i] == '\n' && map[i + 1] == '\n')
+		{
+			free(map);
+			ft_handler_error1("Invalid map. \
+The map have an empty line", game);
+		}
+		i++;
+	}
+}
+
 void	ft_read_map(t_game *game, char *map_file)
 {
 	char	*map_t;
@@ -20,7 +43,7 @@ void	ft_read_map(t_game *game, char *map_file)
 	
 	read = open(map_file, O_RDONLY);
 	if (read == -1)
-		ft_handler_error("The map unable to open", game);
+		ft_handler_error1("The map unable to open", game);
 	map_t = ft_calloc(sizeof(char), 1);
 	game->map.rows = 0;
 	while (1)
@@ -33,6 +56,7 @@ void	ft_read_map(t_game *game, char *map_file)
 		game->map.rows++;
 	}
 	close(read);
+	ft_verific_line(map_t, game);
 	game->map.full = ft_split(map_t, '\n');
 	free(map_t);
 }
